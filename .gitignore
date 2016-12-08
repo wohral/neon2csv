@@ -1,0 +1,8 @@
+# metadata for PhpStorm
+.idea
+
+# metadata for Netbeans
+nbproject
+
+/vendor
+/composer.lock
