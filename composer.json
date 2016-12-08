@@ -1,20 +1,20 @@
 {
-    "name": "wohral/neon2csv",
-    "description": "Tool for converting Nette Object Notation (.neon) files to CSV and back",
-    "type": "library",
-    "license": "MIT",
-    "minimum-stability": "dev",
-    "authors": [
-        {
-            "name": "Petr Vohralik",
-            "homepage": "http://vohralik.net"
-        },
-    ],
-    "require": {
-        "php": ">=5.6.0",
-    },
-    "require-dev": {
-        "nette/tester": "~2.0",
-        "tracy/tracy": "^2.3"
-    }
+  "name": "wohral/neon2csv",
+  "description": "Tool for converting Nette Object Notation (.neon) files to CSV and back",
+  "type": "library",
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "authors": [
+	{
+	  "name": "Petr Vohralik",
+	  "homepage": "http://vohralik.net"
+	}
+  ],
+  "require": {
+	"php": ">=5.6.0",
+  },
+  "require-dev": {
+	"nette/tester": "~2.0",
+	"tracy/tracy": "^2.3"
+  }
 }
