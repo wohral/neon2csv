@@ -12,10 +12,17 @@ namespace wohral\Neon2Csv;
 class Converter
 {
 
-	public static function fromCSV($sourceFile, $targetFile){
+	public static function fromCSV($sourceFile, $targetFile)
+	{
+		$sourceFile = trim($sourceFile);
+		$targetFile = trim($targetFile);
 
+		if (!file_exists($sourceFile)) {
+			throw new ConverterException("File $sourceFile does not exist.");
+		}
 
-
+		// @TODO convert CSV file to NEON
+		// https://forum.nette.org/cs/17861-neon-format-do-csv-nebo-xls-formatu-prevod-tam-i-zpet
 
 	}
 
@@ -24,10 +31,32 @@ class Converter
 		$sourceFile = trim($sourceFile);
 		$targetFile = trim($targetFile);
 
-
-		if(!file_exists($sourceFile)){
+		if (!file_exists($sourceFile)) {
 			throw new ConverterException("File $sourceFile does not exist.");
 		}
+
+		// @TODO convert NEON file to CSV
+		// https://forum.nette.org/cs/17861-neon-format-do-csv-nebo-xls-formatu-prevod-tam-i-zpet
+	}
+
+	/**
+	 * @param string $file
+	 * @return bool
+	 */
+	public static function isNeonFile($file)
+	{
+		$pathInfo = pathinfo($file);
+		return $pathInfo['extension'] == 'neon';
+	}
+
+	/**
+	 * @param string $file
+	 * @return bool
+	 */
+	public static function isCSVFile($file)
+	{
+		$pathInfo = pathinfo($file);
+		return $pathInfo['extension'] == 'csv';
 	}
 }
 

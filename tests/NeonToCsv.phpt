@@ -12,24 +12,19 @@ require __DIR__ . '/bootstrap.php';
 $sourceFile = __DIR__ . '/tmp/test.neon';
 $outputFile = __DIR__ . '/tmp/output.csv';
 
-// Test if all arguments are filled
-Assert::error(function () {
-	Converter::fromNeon('file');
-}, E_WARNING);
+// Test Exception on non exist source File
+Assert::exception(function () use ($sourceFile, $outputFile) {
+	Converter::fromNeon($sourceFile . 'bad', $outputFile);
+}, 'wohral\Neon2Csv\ConverterException', "File ". $sourceFile . "bad" . " does not exist.");
 
 
-// Test if all arguments are filled
-Assert::noError(function () {
-	Converter::fromNeon('in', 'out');
-});
+// Test file format
+Assert::same(true, Converter::isNeonFile('file.neon'));
+Assert::same(false, Converter::isNeonFile('file.exe'));
 
-
-#Assert::exception(function () use ($sourceFile, $outputFile) {
-#	$badFileName = $sourceFile . 'bad';
-#	//Converter::fromNeon($badFileName, $outputFile);
-#}, 'ConverterException', "File $badFileName does not exist.");
-
-//Converter::fromNeon($sourceFile, $outputFile);
+// Test file format
+Assert::same(true, Converter::isCSVFile('file.csv'));
+Assert::same(false, Converter::isCSVFile('file.exe'));
 
 
 if (file_exists($outputFile)) {

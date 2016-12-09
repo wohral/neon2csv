@@ -4,5 +4,6 @@
 # metadata for Netbeans
 nbproject
 
+/index.php
 /vendor
 /composer.lock
