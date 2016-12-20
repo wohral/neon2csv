@@ -19,7 +19,7 @@ class NeonToCsv extends BaseConverter
 
 	public function convert($output)
 	{
-		$inputArray = Neon::decode($this->input);
+		$inputArray = Neon::decode($this->getInput());
 
 		$csvArrayContent = $this->prepareArrayToCsv($inputArray);
 

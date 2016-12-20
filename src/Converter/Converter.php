@@ -19,9 +19,10 @@ class Converter
 			throw new ConverterException("File $sourceFile does not exist.");
 		}
 
-		// @TODO convert CSV file to NEON
-		// https://forum.nette.org/cs/17861-neon-format-do-csv-nebo-xls-formatu-prevod-tam-i-zpet
+		$csvToNeon = new CsvToNeon($sourceFile);
+		$csvToNeon->convert($targetFile);
 
+		return $csvToNeon;
 	}
 
 	public static function fromNeon($sourceFile, $targetFile)
@@ -33,8 +34,7 @@ class Converter
 			throw new ConverterException("File $sourceFile does not exist.");
 		}
 
-		$content = file_get_contents($sourceFile);
-		$neonToCsv = new NeonToCsv($content);
+		$neonToCsv = new NeonToCsv($sourceFile);
 		$neonToCsv->convert($targetFile);
 
 		return $neonToCsv;

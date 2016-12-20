@@ -18,9 +18,3 @@ children:      # this is a comment
 	- Maggie
 
 string: 'characters like #()= put in quotes'
-
-multi: '''
-	one line
-	second line
-	third line
-'''

@@ -10,10 +10,13 @@ namespace wohral\Neon2Csv;
 
 abstract class BaseConverter
 {
+
+	protected $sourceFile;
+
 	/**
 	 * @var string
 	 */
-	protected $input;
+	protected $input = null;
 
 	/**
 	 * @var string
@@ -32,14 +35,14 @@ abstract class BaseConverter
 
 	/**
 	 * BaseConverter constructor.
-	 * @param $input
+	 * @param string $sourceFile path to source file
 	 * @param string $keysSeparator
 	 * @param string $columnsSeparator
 	 * @param string $delimiter
 	 */
-	public function __construct($input, $keysSeparator = '.', $columnsSeparator = '|', $delimiter = ";")
+	public function __construct($sourceFile, $keysSeparator = '.', $columnsSeparator = '|', $delimiter = ";")
 	{
-		$this->input = $input;
+		$this->sourceFile = $sourceFile;
 
 		$this->keysSeparator = $keysSeparator;
 
@@ -53,8 +56,30 @@ abstract class BaseConverter
 	/**
 	 * @return mixed
 	 */
+	public function getSourceFile()
+	{
+		return $this->sourceFile;
+	}
+
+	/**
+	 * @param mixed $sourceFile
+	 * @return BaseConverter
+	 */
+	public function setSourceFile($sourceFile)
+	{
+		$this->sourceFile = trim($sourceFile);
+		return $this;
+	}
+
+	/**
+	 * @return mixed
+	 */
 	public function getInput()
 	{
+		if ($this->input === null) {
+			$this->input = file_get_contents($this->getSourceFile());
+		}
+
 		return $this->input;
 	}
 
