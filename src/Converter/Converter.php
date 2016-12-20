@@ -8,10 +8,8 @@
 
 namespace wohral\Neon2Csv;
 
-
 class Converter
 {
-
 	public static function fromCSV($sourceFile, $targetFile)
 	{
 		$sourceFile = trim($sourceFile);
@@ -35,8 +33,11 @@ class Converter
 			throw new ConverterException("File $sourceFile does not exist.");
 		}
 
-		// @TODO convert NEON file to CSV
-		// https://forum.nette.org/cs/17861-neon-format-do-csv-nebo-xls-formatu-prevod-tam-i-zpet
+		$content = file_get_contents($sourceFile);
+		$neonToCsv = new NeonToCsv($content);
+		$neonToCsv->convert($targetFile);
+
+		return $neonToCsv;
 	}
 
 	/**
